@@ -14,10 +14,17 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import ly.com.tahaben.android_tutorials.core.utils.HomeScreen
+import ly.com.tahaben.android_tutorials.core.utils.SecondScreen
 import ly.com.tahaben.android_tutorials.data.SettingsRepositoryImpl
 import ly.com.tahaben.android_tutorials.domain.model.UIMode
 import ly.com.tahaben.android_tutorials.presentation.home.DataStoreExampleScreen
 import ly.com.tahaben.android_tutorials.presentation.home.DataStoreViewModel
+import ly.com.tahaben.android_tutorials.presentation.second_screen.SecondScreenContent
 import ly.com.tahaben.android_tutorials.presentation.theme.AndroidTutorialsTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,6 +41,7 @@ class MainActivity : ComponentActivity() {
         )
         enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
             val viewModel = viewModel<DataStoreViewModel>() {
                 DataStoreViewModel(
                     SettingsRepositoryImpl(
@@ -49,11 +57,27 @@ class MainActivity : ComponentActivity() {
             }
             AndroidTutorialsTheme(darkTheme = isDark) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    DataStoreExampleScreen(
-                        Modifier.padding(innerPadding),
-                        state = viewModel.state,
-                        onEvent = viewModel::onEvent
-                    )
+                    NavHost(navController, startDestination = HomeScreen) {
+                        composable<HomeScreen> {
+                            DataStoreExampleScreen(
+                                Modifier.padding(innerPadding),
+                                state = viewModel.state,
+                                onEvent = viewModel::onEvent,
+                                onNavigateToSecond = {
+                                    navController.navigate(
+                                        SecondScreen(viewModel.state.userName)
+                                    )
+                                }
+                            )
+                        }
+                        composable<SecondScreen> { navBackStackEntry ->
+                            val secondScreen: SecondScreen = navBackStackEntry.toRoute()
+                            SecondScreenContent(
+                                name = secondScreen.name,
+                                onBackClick = navController::popBackStack
+                            )
+                        }
+                    }
                 }
             }
         }

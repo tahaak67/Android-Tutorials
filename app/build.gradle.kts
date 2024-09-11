@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -77,5 +78,13 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.7.0")
     // Data store
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+    // navigation
+    val nav_version = "2.8.0"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // Kotlinx Serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
 }

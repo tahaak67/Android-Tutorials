@@ -31,7 +31,8 @@ import ly.com.tahaben.android_tutorials.presentation.theme.AndroidTutorialsTheme
 fun DataStoreExampleScreen(
     modifier: Modifier = Modifier,
     state: DataStoreScreenState,
-    onEvent: (DataStoreScreenEvent) -> Unit
+    onEvent: (DataStoreScreenEvent) -> Unit,
+    onNavigateToSecond: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -71,6 +72,9 @@ fun DataStoreExampleScreen(
                 Text("Load Username", fontSize = 12.sp)
             }
         }
+        Button(onClick = onNavigateToSecond) {
+            Text("Go to second")
+        }
     }
 }
 
@@ -78,7 +82,10 @@ fun DataStoreExampleScreen(
 @Composable
 private fun DataStoreExampleScreenPreview() {
     AndroidTutorialsTheme {
-        DataStoreExampleScreen(state = DataStoreScreenState(), onEvent = {})
+        DataStoreExampleScreen(
+            state = DataStoreScreenState(),
+            onEvent = {},
+            onNavigateToSecond = {})
     }
 }
 
