@@ -9,3 +9,6 @@ object HomeScreen
 
 @Serializable
 data class SecondScreen(val name: String)
+
+@Serializable
+object PostsScreen

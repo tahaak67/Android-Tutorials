@@ -6,8 +6,8 @@ import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import ly.com.tahaben.android_tutorials.domain.SettingsRepository
 import ly.com.tahaben.android_tutorials.domain.model.UIMode
+import ly.com.tahaben.android_tutorials.domain.repositories.SettingsRepository
 
 /* Created by Taha https://github.com/tahaak67/ at 11/9/2024 */
 

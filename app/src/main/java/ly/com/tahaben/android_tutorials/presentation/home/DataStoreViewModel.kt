@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import ly.com.tahaben.android_tutorials.domain.SettingsRepository
+import ly.com.tahaben.android_tutorials.domain.repositories.SettingsRepository
 
 /* Created by Taha https://github.com/tahaak67/ at 11/9/2024 */
 

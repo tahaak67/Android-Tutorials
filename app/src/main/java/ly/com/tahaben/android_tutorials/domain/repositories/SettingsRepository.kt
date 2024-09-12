@@ -1,4 +1,4 @@
-package ly.com.tahaben.android_tutorials.domain
+package ly.com.tahaben.android_tutorials.domain.repositories
 
 import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow

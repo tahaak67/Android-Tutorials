@@ -15,7 +15,12 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun SecondScreenContent(modifier: Modifier = Modifier, name: String, onBackClick: () -> Unit) {
+fun SecondScreenContent(
+    modifier: Modifier = Modifier,
+    name: String,
+    onBackClick: () -> Unit,
+    goToPosts: () -> Unit
+) {
     Column(
         Modifier
             .fillMaxSize()
@@ -25,6 +30,9 @@ fun SecondScreenContent(modifier: Modifier = Modifier, name: String, onBackClick
         Button(onClick = onBackClick) {
             Text("Go back")
         }
+        Button(onClick = goToPosts) {
+            Text("Go to Posts")
+        }
     }
 }
 
@@ -32,5 +40,5 @@ fun SecondScreenContent(modifier: Modifier = Modifier, name: String, onBackClick
 @Preview
 @Composable
 private fun SecondScreenPreview() {
-    SecondScreenContent(name = "TahaBen", onBackClick = {})
+    SecondScreenContent(name = "TahaBen", onBackClick = {}, goToPosts = {})
 }

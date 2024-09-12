@@ -19,11 +19,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import ly.com.tahaben.android_tutorials.core.utils.HomeScreen
+import ly.com.tahaben.android_tutorials.core.utils.PostsScreen
 import ly.com.tahaben.android_tutorials.core.utils.SecondScreen
+import ly.com.tahaben.android_tutorials.data.PostsRepositoryImpl
 import ly.com.tahaben.android_tutorials.data.SettingsRepositoryImpl
 import ly.com.tahaben.android_tutorials.domain.model.UIMode
 import ly.com.tahaben.android_tutorials.presentation.home.DataStoreExampleScreen
 import ly.com.tahaben.android_tutorials.presentation.home.DataStoreViewModel
+import ly.com.tahaben.android_tutorials.presentation.posts.PostsScreen
+import ly.com.tahaben.android_tutorials.presentation.posts.PostsViewModel
 import ly.com.tahaben.android_tutorials.presentation.second_screen.SecondScreenContent
 import ly.com.tahaben.android_tutorials.presentation.theme.AndroidTutorialsTheme
 
@@ -74,8 +78,19 @@ class MainActivity : ComponentActivity() {
                             val secondScreen: SecondScreen = navBackStackEntry.toRoute()
                             SecondScreenContent(
                                 name = secondScreen.name,
-                                onBackClick = navController::popBackStack
+                                onBackClick = navController::popBackStack,
+                                goToPosts = { navController.navigate(PostsScreen) }
                             )
+                        }
+                        composable<PostsScreen> {
+                            val postsViewModel: PostsViewModel =
+                                viewModel() { PostsViewModel(repository = PostsRepositoryImpl()) }
+                            PostsScreen(
+                                modifier = Modifier.padding(innerPadding),
+                                state = postsViewModel.state,
+                                onEvent = postsViewModel::onEvent
+                            )
+
                         }
                     }
                 }
