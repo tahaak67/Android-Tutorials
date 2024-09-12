@@ -68,7 +68,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     val lifecycle_version = "2.8.5"
-    val arch_version = "2.2.0"
 
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
@@ -76,15 +75,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
     // material icons extended
     implementation("androidx.compose.material:material-icons-extended:1.7.0")
-    // Data store
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
-    // navigation
-    val nav_version = "2.8.0"
-
-    implementation("androidx.navigation:navigation-compose:$nav_version")
-
-    // Kotlinx Serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
 }
