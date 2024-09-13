@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
             }
             AndroidTutorialsTheme(darkTheme = isDark) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    NavHost(navController, startDestination = HomeScreen) {
+                    NavHost(navController, startDestination = PostsScreen) {
                         composable<HomeScreen> {
                             DataStoreExampleScreen(
                                 Modifier.padding(innerPadding),
